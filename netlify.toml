@@ -6,3 +6,6 @@
 
 [dev]
   publish = "dist"
+
+[functions]
+  included_files = ["dist/api.js"]
