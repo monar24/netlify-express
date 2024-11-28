@@ -24853,14 +24853,14 @@ var import_serverless_http = __toESM(require_serverless_http());
 var import_express2 = __toESM(require_dist5());
 var import_body_parser = __toESM(require_body_parser());
 
-// src/config.ts
+// src/utils/config.ts
 require_main().config();
 var HELLO_COOKIE_SECRET = process.env.HELLO_COOKIE_SECRET;
 var CLIENT_ID = process.env.CLIENT_ID;
 var HOST = process.env.HOST;
 var APP_URL = process.env.APP_URL;
 
-// src/hello.config.ts
+// src/utils/helloConfig.ts
 var helloConfig = {
   client_id: CLIENT_ID,
   secret: HELLO_COOKIE_SECRET || "fallback_secret",
