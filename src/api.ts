@@ -2,7 +2,7 @@ import express, { Application, ErrorRequestHandler } from "express";
 import serverless from "serverless-http";
 import helloAuth from "@hellocoop/express";
 import bodyParser from "body-parser";
-import { helloConfig } from "./hello.config";
+import { helloConfig } from "./utils/helloConfig";
 
 const app: Application = express();
 
