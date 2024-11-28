@@ -24859,8 +24859,10 @@ var HELLO_COOKIE_SECRET = process.env.HELLO_COOKIE_SECRET;
 var CLIENT_ID = process.env.CLIENT_ID;
 var HOST = process.env.HOST;
 var APP_URL = process.env.APP_URL;
+var NODE_ENV = process.env.NODE_ENV;
 
 // src/utils/helloConfig.ts
+var isLocal = NODE_ENV !== "production";
 var helloConfig = {
   client_id: CLIENT_ID,
   secret: HELLO_COOKIE_SECRET || "fallback_secret",
@@ -24872,7 +24874,7 @@ var helloConfig = {
     loggedOut: "/logout",
     error: "/error"
   },
-  redirectURI: APP_URL
+  redirectURI: isLocal ? "http://localhost:8888/.netlify/functions/api/hellocoop?op=auth" : "https://splendorous-nasturtium-c1e9ae.netlify.app/.netlify/functions/api/hellocoop?op=auth"
   // logConfig?: boolean;
   // apiRoute?: string;
 };
@@ -24888,8 +24890,16 @@ router.get("/", (req, res) => {
     message: "Welcome to Identity v0"
   });
 });
+router.use("/hellocoop", (req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  res.send("Middleware test passed!");
+  next();
+});
+router.use("/hellocoop", (0, import_express2.default)(helloConfig));
 app.use(`/.netlify/functions/api`, router);
-app.use((0, import_express2.default)(helloConfig));
+app.get("/.netlify/functions/api/test", (req, res) => {
+  res.send("Test route working!");
+});
 var errorHandler = (err, req, res, next) => {
   res.status(err.status || 500).send({
     status: err.status || 500,

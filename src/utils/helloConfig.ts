@@ -1,4 +1,5 @@
-import { CLIENT_ID, HELLO_COOKIE_SECRET, APP_URL } from "./config";
+import { CLIENT_ID, HELLO_COOKIE_SECRET, NODE_ENV } from "./config";
+const isLocal = NODE_ENV !== "production";
 
 type ScopeType = (
     | "name"
@@ -40,7 +41,9 @@ export const helloConfig = {
         loggedOut: '/logout',
         error: '/error',
     },
-    redirectURI: APP_URL
+    redirectURI: isLocal
+    ? "http://localhost:8888/.netlify/functions/api/hellocoop?op=auth"
+    : "https://splendorous-nasturtium-c1e9ae.netlify.app/.netlify/functions/api/hellocoop?op=auth",  
     // logConfig?: boolean;
     // apiRoute?: string;
 }

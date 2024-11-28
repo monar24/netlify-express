@@ -19,11 +19,23 @@ router.get("/", (req, res) => {
     message: "Welcome to Identity v0",
   });
 });
+
+// Move "/hellocoop" under the router
+router.use("/hellocoop", (req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  res.send("Middleware test passed!"); // Temporary response
+  next()
+});
+
+router.use("/hellocoop", helloAuth(helloConfig));
+
 app.use(`/.netlify/functions/api`, router);
 
-// Hellō Middleware
-app.use(helloAuth(helloConfig));
 
+// Test route
+app.get("/.netlify/functions/api/test", (req, res) => {
+  res.send("Test route working!");
+});
 // Error Handling
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   res.status(err.status || 500).send({
