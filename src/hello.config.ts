@@ -1,4 +1,4 @@
-import { CLIENT_ID, HELLO_COOKIE_SECRET, APP_URL } from "./config.ts";
+import { CLIENT_ID, HELLO_COOKIE_SECRET, APP_URL } from "./config";
 
 type ScopeType = (
     | "name"
