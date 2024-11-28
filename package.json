@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "netlify dev",
-    "build": "esbuild src/api.ts --bundle --platform=node --target=node16 --outfile=dist/api.js"
+    "build": "tsc && esbuild src/api.ts --bundle --platform=node --target=node16 --outfile=dist/api.js"
   },
   "repository": {
     "type": "git",

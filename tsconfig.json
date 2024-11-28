@@ -2,8 +2,8 @@
     "compilerOptions": {
       "target": "ES2020",
       "module": "CommonJS",
-      "outDir": "dist",
-      "rootDir": "src",
+      "outDir": "dist", // Compiled files go here
+      "rootDir": "src", // Your source files
       "strict": true,
       "esModuleInterop": true,
       "moduleResolution": "node",
